@@ -1,0 +1,71 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+.hide {display:none;}
+.show {display:block;}
+body {margin:40px;}
+</style>
+<script>
+$(document).ready(function(){
+
+	$("#res").on("click",function(){
+		$("#wid").addClass("show");
+		$("#hei").addClass("show");
+	});
+	$("#asp").on("click",function(){
+		$("#cwid").addClass("show");
+		$("#chei").addClass("show");
+	});
+});
+</script>
+
+
+
+
+</head>
+
+<body>
+<div class="jumbotron">
+	<div class="container">
+		<div  >
+			<h2 > RESIZE</h2>
+				<span class="glyphicon glyphicon-menu-down" >HERE YOU CAN RESIZE ANY FORMAT OF IMAGE	</span>
+		</div><br><br>
+		<form method="post" action="upload" enctype="multipart/form-data">
+			<div class="form-group" >
+				<label for="fileinput" >File Link</label>
+				<input type="file"  name="uploadFile" ><br>
+				<label for="toconvert" >Choose option :</label> 
+				<div >
+					<input id="res" type="radio" value="resize" name="resize">Resize
+					<input id="asp" type="radio" value="aspect" name="resize">Change Aspect Ratio
+				</div><br>
+				<div ><span class="hide" id="wid">Width:<input type="number" value="780" name="width"><br></span>
+				     <span class="hide" id="hei">Height:<input type="number" value="260" name="height"><br></span>
+				     <span class="hide" id="cwid">Crop Width:<input type="number" value="780" name="cwidth"><br></span>
+				     <span class="hide" id="chei">Crop Height:<input type="number" value="260" name="cheight"><br></span>
+				</div><br>
+				<button name="button1" class="bt1" class="btn btn-success">submit<span class="glyphicon glyphicon-chevron-right"></span></button>
+				</form>
+		<% if (rpath !="") { %>
+			<div>
+				<label>Download resize here :</label>
+				<form method="post" action="downloadit">
+				<input type="hidden" name="path" value="<%= rpath %>"> 
+				<button name="button11" class="btn btn-success">Download here(resize)<span class="glyphicon glyphicon-chevron-down"></span></button><span><%= dest1 %></span></form>
+			
+		</div><% }	%>
+
+		<% if (cpath !="") { %>
+			<div>
+				<label>Download croped here :</label>
+				<form method="post" action="downloadit">
+				<input type="hidden" name="path" value="<%= cpath %>"> 
+				<button name="button11" class="btn btn-success">Download here(crop)<span class="glyphicon glyphicon-chevron-down"></span></button><span><%= dest1 %></span>
+			</form>
+		</div><% }	%>
+</body>
+</html>

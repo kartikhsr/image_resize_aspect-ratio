@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<title></title>
+</head>
+<body>
+<img id="scream" src="<%= image%>">
+<canvas id="myCanvas" width="<%= width %>" height="<%= height %>" style="border:1px solid #000000;">
+</canvas> 
+<a id="link" href="" download="<%= image%>" font-face="arial">Download here(jpeg)</a>
+<!-- <a id="link1" href="" download="<%= image%>">Download here(png)</a> -->
+<script>
+		$(document).ready(function(){
+		$("img").hide();
+		var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "red";
+		ctx.fillRect(0,0,"<%= width %>","<%= height %>");
+		var img= document.getElementById("scream");
+		console.log((c.width-img.width)/2 ,  (c.height-img.height)/2);
+		ctx.drawImage(img, (c.width-img.width)/2, (c.height-img.height)/2);
+		var myimage=c.toDataURL();
+		var myimage1=c.toDataURL();
+		$("#link").attr('href',myimage);
+		$("#link1").attr('href',myimage1);
+});
+</script>
+</body>
+</html>

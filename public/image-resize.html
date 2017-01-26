@@ -1,0 +1,52 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+body {margin:40px;}
+</style>
+</head>
+
+<body>
+<div class="jumbotron">
+	<div class="container">
+		<div  >
+			<h2> RESIZE</h2>
+				<span class="glyphicon glyphicon-menu-down" >HERE YOU CAN RESIZE ANY FORMAT OF IMAGE	</span>
+		</div><br><br>
+		<form method="post" action="upload" enctype="multipart/form-data">
+			<div class="form-group" >
+				<label for="fileinput" >File Link</label>
+				<input type="file"  name="uploadFile" ><br>
+				<label for="toconvert" >Choose option :</label> 
+				<div >
+					<input type="checkbox" value="resize" name="resize">Resize
+					<input type="checkbox" value="aspect" name="aspect">Change Aspect Ratio
+				</div><br>
+				<div>Width:<input type="number" value="780" name="width"><br>
+				     Height:<input type="number" value="260" name="height"><br>
+				     Crop Width:<input type="number" value="780" name="cwidth"><br>
+				     Crop Height:<input type="number" value="260" name="cheight"><br>
+				</div><br>
+				<button name="button1" class="bt1" class="btn btn-success">submit<span class="glyphicon glyphicon-chevron-right"></span></button>
+				</form>
+		<% if (rpath !="") { %>
+			<div>
+				<label>Download resize here :</label>
+				<form method="post" action="downloadit">
+				<input type="hidden" name="path" value="<%= rpath %>"> 
+				<button name="button11" class="btn btn-success">Download here(resize)<span class="glyphicon glyphicon-chevron-down"></span></button><span><%= dest1 %></span></form>
+			
+		</div><% }	%>
+
+		<% if (cpath !="") { %>
+			<div>
+				<label>Download croped here :</label>
+				<form method="post" action="downloadit">
+				<input type="hidden" name="path" value="<%= cpath %>"> 
+				<button name="button11" class="btn btn-success">Download here(crop)<span class="glyphicon glyphicon-chevron-down"></span></button><span><%= dest1 %></span>
+			</form>
+		</div><% }	%>
+</body>
+</html>
